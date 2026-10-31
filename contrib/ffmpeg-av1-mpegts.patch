@@ -1,0 +1,32 @@
+--- a/libavformat/mpegts.c
++++ b/libavformat/mpegts.c
+@@ -878,6 +878,7 @@
+     { MKTAG('I', 'D', '3', ' '), AVMEDIA_TYPE_DATA,  AV_CODEC_ID_TIMED_ID3 },
+     { MKTAG('V', 'C', '-', '1'), AVMEDIA_TYPE_VIDEO, AV_CODEC_ID_VC1   },
+     { MKTAG('O', 'p', 'u', 's'), AVMEDIA_TYPE_AUDIO, AV_CODEC_ID_OPUS  },
++    { MKTAG('A', 'V', '0', '1'), AVMEDIA_TYPE_VIDEO, AV_CODEC_ID_AV1   },
+     { 0 },
+ };
+ 
+--- a/libavformat/mpegtsenc.c
++++ b/libavformat/mpegtsenc.c
+@@ -425,6 +425,10 @@
+     case AV_CODEC_ID_OPUS:
+         stream_type = STREAM_TYPE_PRIVATE_DATA;
+         break;
++    case AV_CODEC_ID_AV1:
++        /* AV1 in MPEG-2 TS: private stream with an 'AV01' registration descriptor */
++        stream_type = STREAM_TYPE_PRIVATE_DATA;
++        break;
+     case AV_CODEC_ID_TIMED_ID3:
+         stream_type = STREAM_TYPE_METADATA;
+         break;
+@@ -811,6 +815,8 @@
+                        stream_type == STREAM_TYPE_VIDEO_AVS3) {
+                 put_registration_descriptor(&q, MKTAG('A', 'V', 'S', 'V'));
+             }
++            if (codec_id == AV_CODEC_ID_AV1)
++                put_registration_descriptor(&q, MKTAG('A', 'V', '0', '1'));
+             break;
+         case AVMEDIA_TYPE_DATA:
+             if (codec_id == AV_CODEC_ID_SMPTE_KLV) {

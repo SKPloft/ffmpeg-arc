@@ -63,6 +63,7 @@ COPY ./contrib /contrib
 RUN cd /dist/ffmpeg-${FFMPEG_VERSION} && \
   patch -p1 < /contrib/ffmpeg-jsonstats.patch && \
   patch -p1 < /contrib/ffmpeg-hls.patch && \
+  patch -p1 < /contrib/ffmpeg-av1-mpegts.patch && \
   ./configure \
   --extra-version="datarhei-${BUILD_COMMIT}-${BUILD_DATE}" \
   --prefix="${SRC}" \
