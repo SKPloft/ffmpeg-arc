@@ -56,7 +56,7 @@ RUN apk add -U \
 
 # install and patch ffmpeg
 RUN mkdir -p /dist && cd /dist && \
-  curl -OLk http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz && \
+  curl -fOL https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz && \
   tar -xvz -f ffmpeg-${FFMPEG_VERSION}.tar.gz && \
   rm ffmpeg-${FFMPEG_VERSION}.tar.gz
 

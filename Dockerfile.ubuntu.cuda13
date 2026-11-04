@@ -54,7 +54,7 @@ RUN apt-get update -y && \
 
 # install and patch ffmpeg
 RUN mkdir -p /dist && cd /dist && \
-  curl -OLk http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz && \
+  curl -fOL https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz && \
   curl -OLk https://github.com/FFmpeg/nv-codec-headers/releases/download/n${FFNVCODEC_VERSION}/nv-codec-headers-${FFNVCODEC_VERSION}.tar.gz && \
   tar -xvz -f ffmpeg-${FFMPEG_VERSION}.tar.gz && \
   tar -xvz -f nv-codec-headers-${FFNVCODEC_VERSION}.tar.gz && \

@@ -23,7 +23,7 @@ RUN apk add --no-cache \
 WORKDIR /tmp
 
 # FFmpeg Quellen holen
-RUN curl -LO http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz && \
+RUN curl -fLO https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz && \
     tar -xzf ffmpeg-${FFMPEG_VERSION}.tar.gz && \
     rm ffmpeg-${FFMPEG_VERSION}.tar.gz
 
